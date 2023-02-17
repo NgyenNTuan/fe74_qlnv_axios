@@ -1,18 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Quan Ly Nhan Vien</title>
+   <title>Quan ly nhan vien</title>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+   <!-- MAIN CSS -->
    <link rel="stylesheet" href="./css/main.css">
+   <style>
+      .loader {
+         position: absolute;
+         left: 50%;
+         transform: translateX(-50%);
+         border: 16px solid #f3f3f3;
+         /* Light grey */
+         border-top: 16px solid #3498db;
+         /* Blue */
+         border-radius: 50%;
+         width: 120px;
+         height: 120px;
+         animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+         0% {
+            transform: rotate(0deg);
+         }
+
+         100% {
+            transform: rotate(360deg);
+         }
+      }
+   </style>
 </head>
 
 <body>
+   <div class="container">
+      <div>
+         <div class="text-center bg-dark text-white">
+            <h2>Quản lý nhân viên</h2>
+         </div>
+         <form id="formEmp" class="form__input-body">
+            <div class="form-group">
+               <label>Mã nhân viên</label>
+               <input id="empId" class="form-control">
+               <span class="emp-notify" id="nfEmpId"></span>
+            </div>
+            <div class="form-group">
+               <label>Tên nhân viên</label>
+               <input id="empName" class="form-control">
+               <span class="emp-notify" id="nfEmpName"></span>
+            </div>
+            <div class="form-group">
+               <label>Chức vụ</label>
+               <select id="empPst" class="form-control">
+                  <option value="1">Nhân viên</option>
+                  <option value="2">Quản lý</option>
+                  <option value="3">Giám đốc</option>
+               </select>
+               <span class="emp-notify" id="nfEmpPst"></span>
+            </div>
+            <div class="form-group">
+               <label>Lương cơ bản</label>
+               <input id="empSalary" class="form-control">
+               <span class="emp-notify" id="nfEmpSalary"></span>
+            </div>
+            <div class="form-group">
+               <label>Số giờ làm trong tháng</label>
+               <input id="empTime" class="form-control">
+               <span class="emp-notify" id="nfEmpTime"></span>
+            </div>
+         </form>
+         <div class="btn-block">
+            <button id="addEmpBtn" class="btn btn-success">Thêm nhân viên</button>
+            <button id="updateEmpBtn" class="btn btn-success">Cập nhật</button>
+         </div>
+      </div>
+
+      <br />
+
+      <div class="tblEmp" id="tblEmp">
+         <table class="table">
+            <thead class="table-primary">
+               <th>Mã nhân viên</th>
+               <th>Tên nhân viên</th>
+               <th>Chức vụ</th>
+               <th>Lương cơ bản</th>
+               <th>Tổng lương</th>
+               <th>Giờ làm/tháng</th>
+               <th>Xếp loại nhân viên</th>
+               <th></th>
+            </thead>
+            <tbody id="tblEmpList"></tbody>
+         </table>
+         <!-- Loader -->
+         <div id="loader" style="display: none" class="loader"></div>
+      </div>
+   </div>
+
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+
+   <!-- Axios -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.2/axios.min.js"
+      integrity="sha512-NCiXRSV460cHD9ClGDrTbTaw0muWUBf/zB/yLzJavRsPNUl9ODkUVmUHsZtKu17XknhsGlmyVoJxLg/ZQQEeGA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
    <!-- MAIN JS -->
    <script src="./src/models/Employee.js"></script>
+   <script src="./src/models/Validation.js"></script>
    <script src="./src/services/CallAPI.js"></script>
    <script src="./src/controllers/main.js"></script>
 </body>
