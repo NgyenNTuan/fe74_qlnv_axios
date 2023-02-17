@@ -1,1 +1,14 @@
-/*# sourceMappingURL=main.css.map */
+.emp-notify {
+  color: red;
+  margin-left: 2px;
+  display: none;
+}
+
+.btn-block {
+  display: flex;
+  justify-content: right;
+}
+
+#updateEmpBtn {
+  display: none;
+}/*# sourceMappingURL=main.css.map */
